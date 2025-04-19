@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Paytone+One&display=swap');
+
+html {
+  background-color: #FFFFC1;
+}
+
+body {
+  background-color: #FFFFC1;
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#main-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#main-title {
+  font-family: "Paytone One", sans-serif;
+  color: #643629;
+  font-size: 8vh;
+  max-width: 350px;
+  white-space: normal;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: -30px;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: 70vh;
+  display: block;
+  margin: 0 auto;
+}
+
+#get-started-button {
+  background-color: #D3F081;
+  font-family: "Paytone One", sans-serif;
+  color: #643629;
+  font-size: 43px;
+  margin-top: -80px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 60px;
+  border: none;
+  padding: 10px 75px;
+  box-shadow: 5px 5px 0px #A4CF5A;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+#get-started-button:hover {
+  box-shadow: 1px 1px 0px #D3F081;
+  transform: translateY(5px);
+}
+
+#get-started-button:active {
+  background-color: rgba(211, 240, 129, 0.75);
+  box-shadow: 0px 0px 0px #D3F081;
+  transform: translateY(5px);
+}
+
+.card {
+  padding: 2em;
+}
+
+.calculator-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titles {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.titles h3 {
+  font-family: "Paytone One", sans-serif;
+  color: #643629;
+  margin-bottom: -10px;
+}
+
+#total {
+  font-family: "Paytone One", sans-serif;
+  color: #643629;
+  margin-top: -40px;
+}
+
+#total h1 {
+  font-size: 64px;
+  background-color: #D3F081;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 0px #A4CF5A;
+  margin-top: -40px;
+  margin-bottom: 0;
+}
+
+#total h2 {
+  text-align: left;
+  font-size: 45px;
+}
+
+.denomination-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 600;
+  color: #643629;
+}
+
+.denomination-row {
+  display: flex;
+  align-items: center;
+}
+
+.denomination-label {
+  flex: 1;
+  text-align: center;
+  padding-right: 0.5rem;
+}
+
+.denomination-input {
+  flex: 0 0 100px;
+  background-color:#F3ED8B;
+  border-style: none;
+  border-radius: 20px;
+  padding: 10px 0;
+  padding-left: 20px;
+  box-shadow: 0px 4px 4px rgba(216, 210, 118, 0.5);
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 600;
+  color: #643629;
+}
+
+.other-amount-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 600;
+  color: #643629;
+}
+
+.other-amount-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.other-amount-label {
+  flex: 1;
+  text-align: center;
+  padding-right: 0.5rem;
+}
+
+.add-button {
+  position: absolute;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  right: -45px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: #D3F081;
+  font-family: "Paytone One", sans-serif;
+  color: #643629;
+  font-size: 25px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0 0 5px 0;
+  box-shadow: 0px 4px 4px rgba(178, 203, 109, 0.5);
+}
+
+.reset-button {
+      background-color: #D3F081;
+      font-family: "Paytone One", sans-serif;
+      color: #643629;
+      font-size: 35px;
+      margin-top: 1rem;
+      position: relative;
+      cursor: pointer;
+      border-radius: 60px;
+      border: none;
+      padding: 10px 75px;
+      box-shadow: 5px 5px 0px #A4CF5A;
+      transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.reset-button:hover {
+  box-shadow: 1px 1px 0px #D3F081;
+  transform: translateY(5px);
+}
+
+.reset-button:active {
+  background-color: rgba(211, 240, 129, 0.75);
+  box-shadow: 0px 0px 0px #D3F081;
+  transform: translateY(5px);
+}
+
+@media screen and (max-width: 600px) {
+
+  body {
+    min-height: auto;
+  }
+
+  #root {
+    padding: 1rem;
+  }
+
+        #main-title {
+          font-size: 6vh;
+          max-width: 90%;
+          margin-bottom: -10px;
+        }
+
+        img {
+          max-height: 40vh;
+          width: 100%;
+          height: auto;
+          margin-bottom: 30px;
+        }
+
+        #get-started-button {
+          font-size: 28px;
+          padding: 8px 40px;
+          border-radius: 40px;
+        }
+
+   #total h1 {
+     font-size: 40px;
+       padding: 20px;
+      border-radius: 15px;
+        margin-top: -20px;
+     }
+
+    #total h2 {
+      font-size: 28px;
+      text-align: left;
+      margin-top: 5vh;
+    }
+}
