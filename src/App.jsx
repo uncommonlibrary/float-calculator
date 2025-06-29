@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Calculator from "./Components/Calculator";
+import { Analytics } from "@vercel/analytics/next";
 import "./App.css";
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
 
   return (
     <>
+      <Analytics />
       {!showCalculator && (
         <>
           <div id="main-display">
