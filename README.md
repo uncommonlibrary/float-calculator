@@ -18,22 +18,22 @@ Peek my Figma here: [Figma 🎨](https://www.figma.com/design/RwaWbGCGL0MEHQAgEI
 - **Mobile-Friendly**: Built with that squeezy cash register in mind. No bulky laptops required!
 - **Add Any Other Amount**: Easily account for pre-counted or bundled cash. Perfect for those "standby" rolls of coins or stacks of bills.
 
-### ✨**NEW!**✨ Calculate Settlement
+### ✨NEW!✨ Calculate Settlement
 Reconcile all your payments in one place. This feature removes the hassle of going back and forth between multiple card terminals. Simply input your payment totals as you see them from each terminal, and Float Calculator will instantly group them, giving you an overall subtotal and total sales to cross-check with your POS machine.
 
 ## Screenshots
 
 _**Your Go-To App for Counting Cash Float**_
 
-<img src="./public/main-title.jpg" alt="Main Title Screen" width="70%">
+<img src="./public/main-title.jpg" alt="Main Title Screen" width="350px">
 
 _**It's that quick and easy!**_
 
-<img src="./public/cash-float.jpg" alt="Cash Float Screen" width="70%">
+<img src="./public/cash-float.jpg" alt="Cash Float Screen" width="350px">
 
 _**No more juggling of terminals!**_
 
-<img src="./public/settlement.jpg" alt="Settlement Screen" width="70%">
+<img src="./public/settlement.jpg" alt="Settlement Screen" width="350px">
 
 ## Attributions & Credits
 
