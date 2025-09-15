@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
-import { CashFloat } from "./components/CashFloat";
+import { CashFloat } from "./Components/CashFloat";
 import { Settlement } from "./Components/Settlement";
 
 function StartScreen({ onGetStarted }) {
