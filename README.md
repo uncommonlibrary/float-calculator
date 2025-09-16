@@ -19,6 +19,7 @@ Peek my Figma here: [Figma 🎨](https://www.figma.com/design/RwaWbGCGL0MEHQAgEI
 - **Add Any Other Amount**: Easily account for pre-counted or bundled cash. Perfect for those "standby" rolls of coins or stacks of bills.
 
 ### ✨NEW!✨ Calculate Settlement
+
 Reconcile all your payments in one place. This feature removes the hassle of going back and forth between multiple card terminals. Simply input your payment totals as you see them from each terminal, and Float Calculator will instantly group them, giving you an overall subtotal and total sales to cross-check with your POS machine.
 
 ## Screenshots

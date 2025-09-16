@@ -152,7 +152,7 @@ export function CashFloat() {
       </div>
 
       {/* Bills Section */}
-      <div className="space-y-0 m-[25px]">
+      <div className="space-y-0 mt-[25px]">
         {/* Dark Green Box */}
         <div className="bg-[#a4cf5a] w-[344px] h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
           {/* Bills Header - positioned in the green header area */}
@@ -201,7 +201,7 @@ export function CashFloat() {
       </div>
 
       {/* Coins Section */}
-      <div className="space-y-0 m-[25px]">
+      <div className="space-y-0 mt-[25px]">
         {/* Dark Green Box */}
         <div className="bg-[#a4cf5a] w-[344px] h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
           {/* Coins Header - positioned in the green header area */}
@@ -251,7 +251,7 @@ export function CashFloat() {
 
       {/* Miscellaneous Section */}
       {customEntries.length > 0 && (
-        <div className="space-y-0 m-[25px]">
+        <div className="space-y-0 mt-[25px]">
           {/* dark green box */}
           <div className="bg-[#a4cf5a] w-[344px] h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
             <div className="text-[#643629] text-[23px] font-['Jersey_10'] leading-none px-[20px] py-[6px] text-right">
@@ -288,7 +288,9 @@ export function CashFloat() {
                       onFocus={(e) => e.target.select()}
                       onWheel={(e) => e.target.blur()}
                       onKeyDown={handleAmountKeyPress}
-                      onChange={(e) => updateCustomAmount(entry.id, e.target.value)}
+                      onChange={(e) =>
+                        updateCustomAmount(entry.id, e.target.value)
+                      }
                       className="w-[80px] h-[22px] bg-[#ffffc1] rounded-[5px] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] text-center text-[#643629] text-[16px] font-['Jersey_10'] border-0 outline-none"
                       placeholder="0.00"
                     />
@@ -301,7 +303,7 @@ export function CashFloat() {
       )}
 
       {/* Action Buttons */}
-      <div className="space-y-[21px] m-[25px]">
+      <div className="space-y-[21px] mt-[25px]">
         <button
           onClick={addCustomEntry}
           className="w-full h-[35px] bg-[#d3f081] rounded-[20px] shadow-[0px_4px_0px_0px_#a4cf5a] text-[#643629] text-[20px] font-['Jersey_10'] leading-none hover:translate-y-0.5 hover:shadow-[0px_2px_0px_0px_#a4cf5a] transition-all"
