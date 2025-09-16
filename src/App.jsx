@@ -162,7 +162,7 @@ export default function App() {
   const getMaxWidth = () => {
     if (screenWidth >= 1150) return '30%';      // Laptop
     if (screenWidth >= 768) return '70%';       // Tablet  
-    return '80%';                               // Phone
+    return '90%';                               // Phone
   };
 
 
@@ -185,9 +185,10 @@ export default function App() {
           padding: '1rem',
         }}
       >
-        <div className="py-[38px] space-y-4">
-          {/* Tab Navigation */}
-          <div className="w-[347px] mx-auto">
+        {/* this container will shrink to fit content. so bc settlement has lesser content, it will be smaller. settlement also uses flex-1 that can shrink */}
+        <div className="w-full py-[38px] space-y-4">
+          {/* Tab Navigation - changed w-[347px] to w-full */}
+          <div className="w-full mx-auto">
             <div className="bg-[#a4cf5a] h-[35px] rounded-[40px] relative">
               <div className="absolute inset-x-[3px] top-[2.5px] bottom-[2.5px] flex gap-1">
                 <TabButton
@@ -207,7 +208,7 @@ export default function App() {
           </div>
 
           {/* Content */}
-          <div className="pb-[25px]">
+          <div className="pb-[25px] w-full">
             {activeTab === "cash" ? <CashFloat /> : <Settlement />}
           </div>
         </div>

@@ -71,7 +71,8 @@ function PaymentEntryItem({
   };
 
   return (
-    <div className="flex items-center gap-2 py-[3px]">
+    <div className="w-full flex items-center gap-2 py-[3px]">
+      {/* Added flex-1 to input and removed w-[155px]; added w-full in div above*/}
       <input
         type="text"
         value={localPaymentType}
@@ -79,12 +80,12 @@ function PaymentEntryItem({
         onFocus={entry.isCustom ? (e) => e.target.select() : null}
         onChange={handlePaymentTypeChange}
         onBlur={handlePaymentTypeBlur}
-        className="pl-[5px] w-[155px] h-[22px] bg-[#ffffc1] rounded-[5px] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] px-2 text-[#643629] text-[16.105px] font-['Jersey_10'] border-0 outline-none"
+        className="flex-1 pl-[5px] h-[22px] bg-[#ffffc1] rounded-[5px] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] px-2 text-[#643629] text-[16.105px] font-['Jersey_10'] border-0 outline-none"
         placeholder="Payment Type"
       />
       <button
         onClick={() => removeEntry(entry.id)}
-        className="w-[20px] h-[20px] ml-[5px] rounded-full bg-[#a4cf5a] shadow-[0px_3.45px_0px_0px_#82a544] flex items-center justify-center hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#82a544] transition-all"
+        className="w-[20px] h-[20px] mx-[7px] rounded-full bg-[#a4cf5a] shadow-[0px_3.45px_0px_0px_#82a544] flex items-center justify-center hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#82a544] transition-all"
       >
         <div className="absolute text-center text-[#643629] text-[17.274px] font-['Jersey_10'] leading-none">
           ×
@@ -99,7 +100,7 @@ function PaymentEntryItem({
         onWheel={(e) => e.target.blur()}
         onKeyDown={handleAmountKeyPress}
         onChange={handleAmountChange}
-        className="ml-auto w-[72px] h-[22px] bg-[#ffffc1] rounded-[5px] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] text-center text-[#643629] text-[16.105px] font-['Jersey_10'] border-0 outline-none"
+        className="mr-auto w-1/4 flex-shrink-0 h-[22px] bg-[#ffffc1] rounded-[5px] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] text-center text-[#643629] text-[16.105px] font-['Jersey_10'] border-0 outline-none"
         placeholder="0.00"
       />
     </div>
@@ -168,8 +169,8 @@ export function Settlement() {
 
   return (
     <div className="space-y-4 pt-[20px]">
-      {/* Total Sales Display - Updates dynamically */}
-      <div className="bg-[#d3f081] h-[97px] w-[344px] mx-auto rounded-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] flex flex-col items-center justify-center">
+      {/* Total Sales Display - Updates dynamically - changed w-[344px] to w-full */}
+      <div className="bg-[#d3f081] h-[97px] w-full mx-auto rounded-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] flex flex-col items-center justify-center">
         <div className="text-[#643629] text-[30px] font-['Jersey_10'] leading-none mb-1">
           Total Sales
         </div>
@@ -178,22 +179,22 @@ export function Settlement() {
         </div>
       </div>
 
-      {/* Add Payment Type Title */}
-      <div className="space-y-0 mx-[25px] my-[15px]">
+      {/* Add Payment Type Title - removed mx-[25px] */}
+      <div className="space-y-0 my-[15px]">
         <div className="text-[#643629] text-left text-[30px] font-['Jersey_10'] leading-none">
           Add Payment Type
         </div>
       </div>
 
-      {/* Quick Add Buttons */}
-      <div className="space-y-[14px] mx-[25px]">
+      {/* Quick Add Buttons - removed mx-[25px] */}
+      <div className="space-y-[14px] w-full">
         {quickAddTypes.map((row, rowIndex) => (
           <div key={rowIndex} className="flex gap-[11px]">
             {row.map((type) => (
               <button
                 key={type}
                 onClick={() => addEntry(type)}
-                className="flex-1 h-[28px] bg-[#d3f081] rounded-[16.105px] shadow-[0px_3.221px_0px_0px_#a4cf5a] text-[#643629] text-[16.105px] font-['Jersey_10'] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
+                className="flex-1 w-full h-[28px] bg-[#d3f081] rounded-[16.105px] shadow-[0px_3.221px_0px_0px_#a4cf5a] text-[#643629] text-[16.105px] font-['Jersey_10'] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
               >
                 + {type}
               </button>
@@ -202,18 +203,18 @@ export function Settlement() {
         ))}
       </div>
 
-      {/* Payment Entries Title */}
-      <div className="space-y-0 mx-[25px] my-[15px]">
+      {/* Payment Entries Title - removed mx-[25px] */}
+      <div className="space-y-0 my-[15px]">
         <div className="text-[#643629] text-left text-[30px] font-['Jersey_10'] leading-none">
           Payment Entries
         </div>
       </div>
 
-      {/* Payment Entries */}
+      {/* Payment Entries - changed w-[344px] to w-full and removed mx-[25px]*/}
       {Object.keys(groupedEntries).length > 0 ? (
-        <div className="bg-[#d3f081] w-[344px] rounded-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] mx-[25px]">
+        <div className="bg-[#d3f081] w-full rounded-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)]">
           {/* Headers */}
-          <div className="grid grid-cols-2 items-center px-[20px] pt-[10px]">
+          <div className="grid grid-cols-2 items-center px-[13px] pt-[10px]">
             <div className="text-[#643629] text-[23px] font-['Jersey_10'] leading-none text-left">
               Payment Type
             </div>
@@ -222,8 +223,8 @@ export function Settlement() {
             </div>
           </div>
 
-          {/* Entries */}
-          <div className="px-[20px] pt-[5px] pb-[10px] space-y-4">
+          {/* Entries - removed px-[20px] */}
+          <div className="pt-[5px] pb-[10px] space-y-4 px-[13px]">
             {Object.entries(groupedEntries).map(
               ([normalizedType, { displayName, entries }]) => {
                 // Subtotal calculates dynamically as you type amount
@@ -233,6 +234,7 @@ export function Settlement() {
                 );
 
                 return (
+                  // <div key={normalizedType} className="space-y-[5px] px-[7px]">
                   <div key={normalizedType} className="space-y-[5px]">
                     {/* Show subtotal - updates when amounts change */}
                     {paymentEntries.length > 0 && (
@@ -264,7 +266,8 @@ export function Settlement() {
           </div>
         </div>
       ) : (
-        <div className="bg-[#d3f081] w-[344px] rounded-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] mx-[25px]">
+        <div className="bg-[#d3f081] w-full rounded-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)]">
+          {/* ABOVE - change w-[344px] to w-full and removed mx-[25px]*/}
           <div className="text-center text-[#643629] text-[20px] font-['Jersey_10'] leading-none">
             <p>
               No payment entries yet! <br /> Add payment type above or <br />{" "}
@@ -274,8 +277,8 @@ export function Settlement() {
         </div>
       )}
 
-      {/* Action Buttons */}
-      <div className="space-y-[21px] m-[25px]">
+      {/* Action Buttons - removed m-[25px] from div directly below */}
+      <div className="space-y-[21px] mt-[25px]">
         <button
           onClick={() => addEntry()}
           className="w-full h-[35px] bg-[#d3f081] rounded-[20px] shadow-[0px_4px_0px_0px_#a4cf5a] text-[#643629] text-[20px] font-['Jersey_10'] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"

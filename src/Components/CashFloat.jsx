@@ -141,8 +141,8 @@ export function CashFloat() {
 
   return (
     <div className="space-y-4 pt-[20px]">
-      {/* Total Display */}
-      <div className="bg-[#d3f081] h-[97px] w-[344px] mx-auto rounded-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] flex flex-col items-center justify-center">
+      {/* Total Display changed w-[344px] to w-full */}
+      <div className="bg-[#d3f081] h-[97px] w-full mx-auto rounded-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] flex flex-col items-center justify-center">
         <div className="text-[#643629] text-[30px] font-['Jersey_10'] leading-none mb-1">
           Total
         </div>
@@ -153,8 +153,8 @@ export function CashFloat() {
 
       {/* Bills Section */}
       <div className="space-y-0 mt-[25px]">
-        {/* Dark Green Box */}
-        <div className="bg-[#a4cf5a] w-[344px] h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
+        {/* Dark Green Box - changed w-[344px] to w-full */}
+        <div className="bg-[#a4cf5a] w-full h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
           {/* Bills Header - positioned in the green header area */}
           <div className="grid grid-cols-3 items-center px-[20px] py-[6px]">
             <div className="text-[#643629] text-[23px] font-['Jersey_10'] leading-none text-left">
@@ -169,10 +169,10 @@ export function CashFloat() {
           </div>
         </div>
 
-        {/* Light Green Box */}
-        <div className="bg-[#d3f081] w-[344px] h-[233px] rounded-b-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)]">
+        {/* Light Green Box changed w-[344px] to w-full */}
+        <div className="bg-[#d3f081] w-full rounded-b-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)]">
           {/* Bills Entries */}
-          <div className="px-[20px] py-[10px] space-y-[21px]">
+          <div className="px-[20px] py-[13px] space-y-[21px]">
             {billEntries.map((entry) => (
               <div key={entry.id} className="grid grid-cols-3 items-center">
                 <div className="text-[#643629] text-[22px] font-['Jersey_10'] leading-none w-[80px]">
@@ -202,8 +202,8 @@ export function CashFloat() {
 
       {/* Coins Section */}
       <div className="space-y-0 mt-[25px]">
-        {/* Dark Green Box */}
-        <div className="bg-[#a4cf5a] w-[344px] h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
+        {/* Dark Green Box - changed w-[344px] to w-full */}
+        <div className="bg-[#a4cf5a] w-full h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
           {/* Coins Header - positioned in the green header area */}
           <div className="grid grid-cols-3 items-center px-[20px] py-[6px]">
             <div className="text-[#643629] text-[23px] font-['Jersey_10'] leading-none text-left">
@@ -218,10 +218,10 @@ export function CashFloat() {
           </div>
         </div>
 
-        {/* Light Green Box */}
-        <div className="bg-[#d3f081] w-[344px] h-[187px] rounded-b-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)]">
+        {/* Light Green Box - changed w-[344px] to w-full */}
+        <div className="bg-[#d3f081] w-full rounded-b-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)]">
           {/* Coins Entries */}
-          <div className="px-[20px] py-[10px] space-y-[21px]">
+          <div className="px-[20px] py-[13px] space-y-[21px]">
             {coinEntries.map((entry) => (
               <div key={entry.id} className="grid grid-cols-3 items-center">
                 <div className="text-[#643629] text-[22px] font-['Jersey_10'] leading-none w-[80px]">
@@ -252,16 +252,16 @@ export function CashFloat() {
       {/* Miscellaneous Section */}
       {customEntries.length > 0 && (
         <div className="space-y-0 mt-[25px]">
-          {/* dark green box */}
-          <div className="bg-[#a4cf5a] w-[344px] h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
+          {/* dark green box - changed w-[344px] to w-full */}
+          <div className="bg-[#a4cf5a] w-full h-[34px] rounded-t-[20px] border-[#643629] border-t border-l border-r relative">
             <div className="text-[#643629] text-[23px] font-['Jersey_10'] leading-none px-[20px] py-[6px] text-right">
               Amount
             </div>
           </div>
-
-          <div className="bg-[#d3f081] w-[344px] rounded-b-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)]">
+          {/* light green box - changed w-[344px] to w-full */}
+          <div className="bg-[#d3f081] w-full rounded-b-[20px] border border-[#643629] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)]">
             {/* Miscellaneous Entries */}
-            <div className="px-[20px] py-[15px] space-y-[21px]">
+            <div className="px-[20px] py-[13px] space-y-[21px]">
               {customEntries.map((entry) => (
                 <div
                   key={entry.id}
