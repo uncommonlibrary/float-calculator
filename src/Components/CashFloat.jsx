@@ -34,21 +34,42 @@ export function CashFloat() {
     return () => clearInterval(timer);
   }, []);
 
-// Format timestamp for display
-const formatTimestamp = () => {
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  
-  const dayName = days[currentTime.getDay()];
-  const day = currentTime.getDate();
-  const month = months[currentTime.getMonth()];
-  const year = currentTime.getFullYear();
-  const hours = currentTime.getHours().toString().padStart(2, '0');
-  const minutes = currentTime.getMinutes().toString().padStart(2, '0');
-  const seconds = currentTime.getSeconds().toString().padStart(2, '0');
-  
-  return `${dayName}, ${day} ${month} ${year}, ${hours}:${minutes}:${seconds}`;
-};
+  // Format timestamp for display
+  const formatTimestamp = () => {
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const dayName = days[currentTime.getDay()];
+    const day = currentTime.getDate();
+    const month = months[currentTime.getMonth()];
+    const year = currentTime.getFullYear();
+    const hours = currentTime.getHours().toString().padStart(2, "0");
+    const minutes = currentTime.getMinutes().toString().padStart(2, "0");
+    const seconds = currentTime.getSeconds().toString().padStart(2, "0");
+
+    return `${dayName}, ${day} ${month} ${year}, ${hours}:${minutes}:${seconds}`;
+  };
 
   const total =
     cashEntries.reduce(
@@ -61,21 +82,21 @@ const formatTimestamp = () => {
     );
 
   // NEW - Get all focusable inputs in order and jump to the next one
-const handleEnterNext = (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    const inputs = Array.from(
-      document.querySelectorAll('#cash-float-container input')
-    );
-    const currentIndex = inputs.indexOf(e.target);
-    if (currentIndex < inputs.length - 1) {
-      inputs[currentIndex + 1].focus();
-      inputs[currentIndex + 1].select();
-    } else {
-      e.target.blur(); // Last field — dismiss keyboard
+  const handleEnterNext = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const inputs = Array.from(
+        document.querySelectorAll("#cash-float-container input")
+      );
+      const currentIndex = inputs.indexOf(e.target);
+      if (currentIndex < inputs.length - 1) {
+        inputs[currentIndex + 1].focus();
+        inputs[currentIndex + 1].select();
+      } else {
+        e.target.blur(); // Last field — dismiss keyboard
+      }
     }
-  }
-};
+  };
 
   // Handle numeric input for quantity fields (integers only)
   const handleQuantityKeyPress = (e) => {
@@ -101,27 +122,37 @@ const handleEnterNext = (e) => {
 
   // Handle numeric input for amount fields (allows decimals)
   const handleAmountKeyPress = (e) => {
-  // Allow control keys
-  if (
-    ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key) ||
-    (e.ctrlKey && ['a', 'c', 'v', 'x'].includes(e.key.toLowerCase()))
-  ) {
-    return;
-  }
-
-  // Allow one decimal point
-  if (e.key === '.') {
-    if (e.target.value.includes('.')) {
-      e.preventDefault(); // Block second decimal
+    // Allow control keys
+    if (
+      [
+        "Backspace",
+        "Delete",
+        "Tab",
+        "Escape",
+        "Enter",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown",
+      ].includes(e.key) ||
+      (e.ctrlKey && ["a", "c", "v", "x"].includes(e.key.toLowerCase()))
+    ) {
+      return;
     }
-    return; // Allow first decimal
-  }
 
-  // Allow digits 0–9 only
-  if (!/^\d$/.test(e.key)) {
-    e.preventDefault();
-  }
-};
+    // Allow one decimal point
+    if (e.key === ".") {
+      if (e.target.value.includes(".")) {
+        e.preventDefault(); // Block second decimal
+      }
+      return; // Allow first decimal
+    }
+
+    // Allow digits 0–9 only
+    if (!/^\d$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
 
   // Sanitize numeric input
   const sanitizeNumericInput = (value, allowDecimals = false) => {
@@ -151,13 +182,13 @@ const handleEnterNext = (e) => {
   };
 
   const updateCustomAmount = (id, value) => {
-  const sanitizedValue = sanitizeNumericInput(value, true);
-  setCustomEntries((entries) =>
-    entries.map((entry) =>
-      entry.id === id ? { ...entry, amount: sanitizedValue } : entry
-    )
-  );
-};
+    const sanitizedValue = sanitizeNumericInput(value, true);
+    setCustomEntries((entries) =>
+      entries.map((entry) =>
+        entry.id === id ? { ...entry, amount: sanitizedValue } : entry
+      )
+    );
+  };
 
   const removeCustomEntry = (id) => {
     setCustomEntries((entries) => entries.filter((entry) => entry.id !== id));
@@ -183,76 +214,85 @@ const handleEnterNext = (e) => {
 
   // To generate screenshot - NEW
   const handleComplete = async () => {
-  const element = document.getElementById('cash-float-container');
+    const element = document.getElementById("cash-float-container");
 
-  // Walk up to find the actual scrollable/background container
-  const scrollContainer = element.closest('[class*="overflow"]') || document.body;
+    // Walk up to find the actual scrollable/background container
+    const scrollContainer =
+      element.closest('[class*="overflow"]') || document.body;
 
-  try {
-    const canvas = await html2canvas(scrollContainer, {
-      useCORS: true,
-      allowTaint: true,
-      scale: 2,
-      width: scrollContainer.scrollWidth,
-      height: scrollContainer.scrollHeight,
-      windowWidth: scrollContainer.scrollWidth,
-      windowHeight: scrollContainer.scrollHeight,
-      scrollX: 0,
-      scrollY: 0,
-      backgroundColor: '#f5e6d3',
-      onclone: (clonedDoc) => {
-        const clonedContainer = clonedDoc.getElementById('cash-float-container');
-        if (clonedContainer) {
-          // Replicate the centering styles your page applies to the component
-          clonedContainer.style.maxWidth = '400px';
-          clonedContainer.style.margin = '0 auto';
-          clonedContainer.style.padding = '0 16px';
-        }
-      },
-    });
-
-    canvas.toBlob(async (blob) => {
-      const timestamp = new Date()
-        .toISOString()
-        .replace(/[:.]/g, '-')
-        .slice(0, 19);
-      const file = new File([blob], `cash-float-${timestamp}.png`, {
-        type: 'image/png',
+    try {
+      const canvas = await html2canvas(scrollContainer, {
+        useCORS: true,
+        allowTaint: true,
+        scale: 2,
+        width: scrollContainer.scrollWidth,
+        height: scrollContainer.scrollHeight,
+        windowWidth: scrollContainer.scrollWidth,
+        windowHeight: scrollContainer.scrollHeight,
+        scrollX: 0,
+        scrollY: 0,
+        backgroundColor: "#f5e6d3",
+        onclone: (clonedDoc) => {
+          const clonedContainer = clonedDoc.getElementById(
+            "cash-float-container"
+          );
+          if (clonedContainer) {
+            // Replicate the centering styles your page applies to the component
+            clonedContainer.style.maxWidth = "400px";
+            clonedContainer.style.margin = "0 auto";
+            clonedContainer.style.padding = "0 16px";
+          }
+        },
       });
 
-      // Explicitly detect mobile via touch support + user agent
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-      if (isMobile && navigator.share && navigator.canShare({ files: [file] })) {
-        // Mobile: native share sheet
-        await navigator.share({
-          files: [file],
-          title: 'Cash Float',
+      canvas.toBlob(async (blob) => {
+        const timestamp = new Date()
+          .toISOString()
+          .replace(/[:.]/g, "-")
+          .slice(0, 19);
+        const file = new File([blob], `cash-float-${timestamp}.png`, {
+          type: "image/png",
         });
-      } else {
-        // Desktop: always download directly
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.download = file.name;
-        link.href = url;
-        link.click();
-        URL.revokeObjectURL(url);
-      }
-    }, 'image/png');
 
-  } catch (error) {
-    if (error.name !== 'AbortError') {
-      console.error('Screenshot failed:', error);
-      alert('Could not capture screenshot. Please try again.');
+        // Explicitly detect mobile via touch support + user agent
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (
+          isMobile &&
+          navigator.share &&
+          navigator.canShare({ files: [file] })
+        ) {
+          // Mobile: native share sheet
+          await navigator.share({
+            files: [file],
+            title: "Cash Float",
+          });
+        } else {
+          // Desktop: always download directly
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.download = file.name;
+          link.href = url;
+          link.click();
+          URL.revokeObjectURL(url);
+        }
+      }, "image/png");
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error("Screenshot failed:", error);
+        alert("Could not capture screenshot. Please try again.");
+      }
     }
-  }
-};
+  };
 
   return (
     <div id="cash-float-container" className="space-y-4 pt-[20px]">
       {/* Timestamp Display - NEW */}
       <div className="h-[60px] w-full mx-auto flex items-center justify-center">
-        <div className="text-[#643629] text-[35px] font-['Jersey_10'] leading-none">
+        <div
+          className="text-[#643629] font-['Jersey_10'] leading-none whitespace-nowrap"
+          style={{ fontSize: "clamp(20px, 7vw, 35px)" }}
+        >
           {formatTimestamp()}
         </div>
       </div>
@@ -302,7 +342,10 @@ const handleEnterNext = (e) => {
                     value={entry.quantity === 0 ? "" : entry.quantity}
                     onFocus={(e) => e.target.select()}
                     onWheel={(e) => e.target.blur()}
-                    onKeyDown={(e) => { handleQuantityKeyPress(e); handleEnterNext(e); }}
+                    onKeyDown={(e) => {
+                      handleQuantityKeyPress(e);
+                      handleEnterNext(e);
+                    }}
                     onChange={(e) => updateQuantity(entry.id, e.target.value)}
                     className="w-full h-[22px] bg-[#ffffc1] rounded-[5px] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] text-center text-[#643629] text-[16px] font-['Jersey_10'] border-0 outline-none"
                   />
@@ -351,7 +394,10 @@ const handleEnterNext = (e) => {
                     value={entry.quantity === 0 ? "" : entry.quantity}
                     onFocus={(e) => e.target.select()}
                     onWheel={(e) => e.target.blur()}
-                    onKeyDown={(e) => { handleQuantityKeyPress(e); handleEnterNext(e); }}
+                    onKeyDown={(e) => {
+                      handleQuantityKeyPress(e);
+                      handleEnterNext(e);
+                    }}
                     onChange={(e) => updateQuantity(entry.id, e.target.value)}
                     className="w-full h-[22px] bg-[#ffffc1] rounded-[5px] shadow-[0px_4px_4px_0px_rgba(100,54,41,0.25)] text-center text-[#643629] text-[16px] font-['Jersey_10'] border-0 outline-none"
                   />
@@ -403,7 +449,10 @@ const handleEnterNext = (e) => {
                       value={entry.amount === 0 ? "" : entry.amount}
                       onFocus={(e) => e.target.select()}
                       onWheel={(e) => e.target.blur()}
-                      onKeyDown={(e) => { handleAmountKeyPress(e); handleEnterNext(e); }}
+                      onKeyDown={(e) => {
+                        handleAmountKeyPress(e);
+                        handleEnterNext(e);
+                      }}
                       onChange={(e) =>
                         updateCustomAmount(entry.id, e.target.value)
                       }

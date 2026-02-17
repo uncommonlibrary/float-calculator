@@ -266,7 +266,10 @@ const formatTimestamp = () => {
     <div id="settlement-container" className="space-y-4 pt-[20px]">
       {/* Timestamp Display - NEW */}
       <div className="h-[60px] w-full mx-auto flex items-center justify-center">
-        <div className="text-[#643629] text-[35px] font-['Jersey_10'] leading-none">
+        <div
+          className="text-[#643629] font-['Jersey_10'] leading-none whitespace-nowrap"
+          style={{ fontSize: "clamp(20px, 7vw, 35px)" }}
+        >
           {formatTimestamp()}
         </div>
       </div>
