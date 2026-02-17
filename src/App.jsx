@@ -104,7 +104,7 @@ function StartScreen({ onGetStarted }) {
         {/* Title */}
         <img
           src="../float-title-scaled.png"
-          className="w-full"
+          className="w-full max-w-[85%]"
           alt="Float Calculator"
           style={{ flex: '2', objectFit: 'contain', minHeight: 0 }}
         />
@@ -118,11 +118,11 @@ function StartScreen({ onGetStarted }) {
         />
 
         {/* Button */}
-        <div style={{ flex: '1.5', width: '100%', minHeight: 0, display: 'flex', alignItems: 'center' }}>
+        <div style={{ flex: '1.5', width: '100%', minHeight: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <button
             onClick={onGetStarted}
             style={{ fontFamily: '"Jersey 10", sans-serif' }}
-            className="w-full h-[60px] bg-[#d3f081] rounded-[40px] shadow-[0px_4px_0px_0px_#a4cf5a] flex items-center justify-center text-[#643629] text-[35px] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
+            className="w-full max-w-[85%] h-[60px] bg-[#d3f081] rounded-[40px] shadow-[0px_4px_0px_0px_#a4cf5a] flex items-center justify-center text-[#643629] text-[35px] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
           >
             Get Started
           </button>
