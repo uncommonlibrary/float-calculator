@@ -49,42 +49,70 @@ function StartScreen({ onGetStarted }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#ffffc1] p-0 flex flex-col items-center">
-      <div 
-        style={{
-          width: '100%',
-          maxWidth: getMaxWidth(),
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingTop: '2vh', 
-          paddingLeft: '1rem',
-          paddingRight: '1rem',
-          paddingBottom: '2vh',
-        }}
-        className="flex-grow justify-center"
-      >
-        <div className="mb-8">
-          <img
-            src="../float-title-scaled.png"
-            className="w-full"
-            alt="Float Calculator"
-          />
-        </div>
+    // <div className="min-h-screen bg-[#ffffc1] p-0 flex flex-col items-center">
+    //   <div 
+    //     style={{
+    //       width: '100%',
+    //       maxWidth: getMaxWidth(),
+    //       display: 'flex',
+    //       flexDirection: 'column',
+    //       alignItems: 'center',
+    //       justifyContent: 'center',
+    //       paddingTop: '2vh', 
+    //       paddingLeft: '1rem',
+    //       paddingRight: '1rem',
+    //       paddingBottom: '2vh',
+    //     }}
+    //     className="flex-grow justify-center"
+    //   >
+    //     <div className="mb-8">
+    //       <img
+    //         src="../float-title-scaled.png"
+    //         className="w-full"
+    //         alt="Float Calculator"
+    //       />
+    //     </div>
 
-        <div className="my-8">
-          <img
-            src="../green-bunny-scaled.png"
-            className="w-full"
-            alt="Green Bunny"
-          />
-        </div>
+    //     <div className="my-8">
+    //       <img
+    //         src="../green-bunny-scaled.png"
+    //         className="w-full"
+    //         alt="Green Bunny"
+    //       />
+    //     </div>
+
+    //     <button
+    //       onClick={onGetStarted}
+    //       style={{ fontFamily: '"Jersey 10", sans-serif' }}
+    //       className="w-full max-w-xs h-[60px] bg-[#d3f081] rounded-[40px] shadow-[0px_4px_0px_0px_#a4cf5a] flex items-center justify-center text-[#643629] text-[35px] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
+    //     >
+    //       Get Started
+    //     </button>
+    //   </div>
+    // </div>
+    <div
+      style={{ height: '100dvh' }} // dvh = dynamic viewport height, accounts for mobile browser chrome
+      className="bg-[#ffffc1] flex flex-col items-center justify-center overflow-hidden px-8"
+    >
+      <div className="w-full flex flex-col items-center justify-center gap-6"
+        style={{ maxWidth: '400px' }}
+      >
+        <img
+          src="../float-title-scaled.png"
+          className="w-full"
+          alt="Float Calculator"
+        />
+
+        <img
+          src="../green-bunny-scaled.png"
+          className="w-full"
+          alt="Green Bunny"
+        />
 
         <button
           onClick={onGetStarted}
           style={{ fontFamily: '"Jersey 10", sans-serif' }}
-          className="w-full max-w-xs h-[60px] bg-[#d3f081] rounded-[40px] shadow-[0px_4px_0px_0px_#a4cf5a] flex items-center justify-center text-[#643629] text-[35px] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
+          className="w-full h-[60px] bg-[#d3f081] rounded-[40px] shadow-[0px_4px_0px_0px_#a4cf5a] flex items-center justify-center text-[#643629] text-[35px] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
         >
           Get Started
         </button>
