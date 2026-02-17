@@ -44,12 +44,12 @@ function StartScreen({ onGetStarted }) {
 
   const getMaxWidth = () => {
     if (screenWidth >= 1150) return '30%';      // Laptop
-    if (screenWidth >= 768) return '70%';       // Tablet  
+    if (screenWidth >= 768) return '50%';       // Tablet  
     return '80%';                               // Phone
   };
 
   return (
-    <div className="min-h-screen bg-[#ffffc1] p-0 flex items-center justify-center">
+    <div className="min-h-screen bg-[#ffffc1] p-0 flex flex-col items-center">
       <div 
         style={{
           width: '100%',
@@ -58,8 +58,12 @@ function StartScreen({ onGetStarted }) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '1rem',
+          paddingTop: '2vh', 
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+          paddingBottom: '2vh',
         }}
+        className="flex-grow justify-center"
       >
         <div className="mb-8">
           <img
@@ -171,7 +175,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#ffffc1] p-0 flex items-center justify-center">
+    <div className="min-h-screen bg-[#ffffc1] p-0 flex flex-col items-center">
       <Analytics mode="production" />
       {/* ADDED FLEXBOX CENTERING CLASSES */}
       <div 
@@ -182,7 +186,10 @@ export default function App() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '1rem',
+          paddingTop: '2vh', 
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+          paddingBottom: '2vh',
         }}
       >
         {/* this container will shrink to fit content. so bc settlement has lesser content, it will be smaller. settlement also uses flex-1 that can shrink */}
