@@ -91,31 +91,42 @@ function StartScreen({ onGetStarted }) {
     //   </div>
     // </div>
     <div
-      style={{ height: '100dvh' }} // dvh = dynamic viewport height, accounts for mobile browser chrome
-      className="bg-[#ffffc1] flex flex-col items-center justify-center overflow-hidden px-8"
+      style={{ height: '100dvh' }}
+      className="bg-[#ffffc1] flex flex-col items-center justify-center overflow-hidden"
     >
-      <div className="w-full flex flex-col items-center justify-center gap-6"
-        style={{ maxWidth: '400px' }}
+      <div
+        className="flex flex-col items-center justify-center w-full h-full"
+        style={{
+          maxWidth: '400px',
+          padding: '5dvh 8vw',  // scales proportionally on all screen sizes
+        }}
       >
+        {/* Title */}
         <img
           src="../float-title-scaled.png"
           className="w-full"
           alt="Float Calculator"
+          style={{ flex: '2', objectFit: 'contain', minHeight: 0 }}
         />
 
+        {/* Bunny */}
         <img
           src="../green-bunny-scaled.png"
           className="w-full"
           alt="Green Bunny"
+          style={{ flex: '5', objectFit: 'contain', minHeight: 0 }}
         />
 
-        <button
-          onClick={onGetStarted}
-          style={{ fontFamily: '"Jersey 10", sans-serif' }}
-          className="w-full h-[60px] bg-[#d3f081] rounded-[40px] shadow-[0px_4px_0px_0px_#a4cf5a] flex items-center justify-center text-[#643629] text-[35px] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
-        >
-          Get Started
-        </button>
+        {/* Button */}
+        <div style={{ flex: '1.5', width: '100%', minHeight: 0, display: 'flex', alignItems: 'center' }}>
+          <button
+            onClick={onGetStarted}
+            style={{ fontFamily: '"Jersey 10", sans-serif' }}
+            className="w-full h-[60px] bg-[#d3f081] rounded-[40px] shadow-[0px_4px_0px_0px_#a4cf5a] flex items-center justify-center text-[#643629] text-[35px] leading-none hover:translate-y-0.5 hover:shadow-[0px_1px_0px_0px_#a4cf5a] transition-all"
+          >
+            Get Started
+          </button>
+        </div>
       </div>
     </div>
   );
