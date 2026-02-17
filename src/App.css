@@ -213,7 +213,7 @@ img {
   transform: translateY(5px);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
 
   body {
     min-height: auto;

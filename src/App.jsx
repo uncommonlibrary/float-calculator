@@ -162,7 +162,7 @@ export default function App() {
   const getMaxWidth = () => {
     if (screenWidth >= 1150) return '30%';      // Laptop
     if (screenWidth >= 768) return '70%';       // Tablet  
-    return '90%';                               // Phone
+    return '80%';                               // Phone
   };
 
 
