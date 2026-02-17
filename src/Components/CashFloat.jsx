@@ -301,6 +301,17 @@ export function CashFloat() {
       scrollX: 0,
       scrollY: 0,
       backgroundColor: '#ffffc1',
+      onclone: (clonedDoc) => {
+          const clonedContainer = clonedDoc.getElementById(
+            "cash-float-container"
+          );
+          if (clonedContainer) {
+            // Replicate the centering styles your page applies to the component
+            clonedContainer.style.maxWidth = "400px";
+            clonedContainer.style.margin = "0 auto";
+            clonedContainer.style.padding = "0 16px";
+          }
+        },
     });
 
     canvas.toBlob(async (blob) => {
