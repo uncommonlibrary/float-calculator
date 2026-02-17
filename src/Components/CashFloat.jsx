@@ -212,78 +212,152 @@ export function CashFloat() {
   const billEntries = cashEntries.filter((entry) => entry.denomination >= 1);
   const coinEntries = cashEntries.filter((entry) => entry.denomination < 1);
 
-  // To generate screenshot - NEW
+  // To generate screenshot - OLD
+  // const handleComplete = async () => {
+  //   const element = document.getElementById("cash-float-container");
+
+  //   // Walk up to find the actual scrollable/background container
+  //   const scrollContainer =
+  //     element.closest('[class*="overflow"]') || document.body;
+
+  //   try {
+  //     const canvas = await html2canvas(scrollContainer, {
+  //       useCORS: true,
+  //       allowTaint: true,
+  //       scale: 2,
+  //       width: scrollContainer.scrollWidth,
+  //       height: scrollContainer.scrollHeight,
+  //       windowWidth: scrollContainer.scrollWidth,
+  //       windowHeight: scrollContainer.scrollHeight,
+  //       scrollX: 0,
+  //       scrollY: 0,
+  //       backgroundColor: "#f5e6d3",
+  //       onclone: (clonedDoc) => {
+  //         const clonedContainer = clonedDoc.getElementById(
+  //           "cash-float-container"
+  //         );
+  //         if (clonedContainer) {
+  //           // Replicate the centering styles your page applies to the component
+  //           clonedContainer.style.maxWidth = "400px";
+  //           clonedContainer.style.margin = "0 auto";
+  //           clonedContainer.style.padding = "0 16px";
+  //         }
+  //       },
+  //     });
+
+  //     canvas.toBlob(async (blob) => {
+  //       const timestamp = new Date()
+  //         .toISOString()
+  //         .replace(/[:.]/g, "-")
+  //         .slice(0, 19);
+  //       const file = new File([blob], `cash-float-${timestamp}.png`, {
+  //         type: "image/png",
+  //       });
+
+  //       // Explicitly detect mobile via touch support + user agent
+  //       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  //       if (
+  //         isMobile &&
+  //         navigator.share &&
+  //         navigator.canShare({ files: [file] })
+  //       ) {
+  //         // Mobile: native share sheet
+  //         await navigator.share({
+  //           files: [file],
+  //           title: "Cash Float",
+  //         });
+  //       } else {
+  //         // Desktop: always download directly
+  //         const url = URL.createObjectURL(blob);
+  //         const link = document.createElement("a");
+  //         link.download = file.name;
+  //         link.href = url;
+  //         link.click();
+  //         URL.revokeObjectURL(url);
+  //       }
+  //     }, "image/png");
+  //   } catch (error) {
+  //     if (error.name !== "AbortError") {
+  //       console.error("Screenshot failed:", error);
+  //       alert("Could not capture screenshot. Please try again.");
+  //     }
+  //   }
+  // };
+
+  // To generate screenshot - NEW (accounting for chrome ios)
   const handleComplete = async () => {
-    const element = document.getElementById("cash-float-container");
+  const element = document.getElementById('cash-float-container');
 
-    // Walk up to find the actual scrollable/background container
-    const scrollContainer =
-      element.closest('[class*="overflow"]') || document.body;
+  try {
+    const canvas = await html2canvas(element, {
+      useCORS: true,
+      allowTaint: true,
+      scale: 2,
+      width: element.scrollWidth,
+      height: element.scrollHeight,
+      windowWidth: element.scrollWidth,
+      windowHeight: element.scrollHeight,
+      scrollX: 0,
+      scrollY: 0,
+      backgroundColor: '#ffffc1',
+    });
 
-    try {
-      const canvas = await html2canvas(scrollContainer, {
-        useCORS: true,
-        allowTaint: true,
-        scale: 2,
-        width: scrollContainer.scrollWidth,
-        height: scrollContainer.scrollHeight,
-        windowWidth: scrollContainer.scrollWidth,
-        windowHeight: scrollContainer.scrollHeight,
-        scrollX: 0,
-        scrollY: 0,
-        backgroundColor: "#f5e6d3",
-        onclone: (clonedDoc) => {
-          const clonedContainer = clonedDoc.getElementById(
-            "cash-float-container"
-          );
-          if (clonedContainer) {
-            // Replicate the centering styles your page applies to the component
-            clonedContainer.style.maxWidth = "400px";
-            clonedContainer.style.margin = "0 auto";
-            clonedContainer.style.padding = "0 16px";
-          }
-        },
+    canvas.toBlob(async (blob) => {
+      const timestamp = new Date()
+        .toISOString()
+        .replace(/[:.]/g, '-')
+        .slice(0, 19);
+      const file = new File([blob], `cash-float-${timestamp}.png`, {
+        type: 'image/png',
       });
 
-      canvas.toBlob(async (blob) => {
-        const timestamp = new Date()
-          .toISOString()
-          .replace(/[:.]/g, "-")
-          .slice(0, 19);
-        const file = new File([blob], `cash-float-${timestamp}.png`, {
-          type: "image/png",
-        });
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const canShareFiles = navigator.share && navigator.canShare && navigator.canShare({ files: [file] });
 
-        // Explicitly detect mobile via touch support + user agent
-        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-        if (
-          isMobile &&
-          navigator.share &&
-          navigator.canShare({ files: [file] })
-        ) {
-          // Mobile: native share sheet
-          await navigator.share({
-            files: [file],
-            title: "Cash Float",
-          });
-        } else {
-          // Desktop: always download directly
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.download = file.name;
-          link.href = url;
-          link.click();
-          URL.revokeObjectURL(url);
+      if (isMobile && canShareFiles) {
+        // Safari iOS: share sheet works with files (Save to Photos, Files, etc.)
+        try {
+          await navigator.share({ files: [file], title: 'Cash Float' });
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            // Share failed — fall back to new tab
+            openImageInNewTab(blob);
+          }
         }
-      }, "image/png");
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        console.error("Screenshot failed:", error);
-        alert("Could not capture screenshot. Please try again.");
+      } else if (isMobile && !canShareFiles) {
+        // Chrome iOS: can't share files — open image in new tab so user can long-press save
+        openImageInNewTab(blob);
+      } else {
+        // Desktop: direct download
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = file.name;
+        link.href = url;
+        link.click();
+        URL.revokeObjectURL(url);
       }
+    }, 'image/png');
+
+  } catch (error) {
+    if (error.name !== 'AbortError') {
+      console.error('Screenshot failed:', error);
+      alert('Could not capture screenshot. Please try again.');
     }
-  };
+  }
+};
+
+// Opens image in a new tab — user can long-press to save on mobile
+const openImageInNewTab = (blob) => {
+  const url = URL.createObjectURL(blob);
+  const newTab = window.open(url, '_blank');
+  if (!newTab) {
+    // If popup was blocked, prompt user
+    alert('Screenshot ready! If the image did not open, please allow popups for this site.');
+  }
+  // Clean up after a delay
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+};
 
   return (
     <div id="cash-float-container" className="space-y-4 pt-[20px]">
