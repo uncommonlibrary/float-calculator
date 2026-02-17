@@ -286,32 +286,30 @@ export function CashFloat() {
   // };
 
   // To generate screenshot - NEW (accounting for chrome ios)
-  const handleComplete = async () => {
+const handleComplete = async () => {
   const element = document.getElementById('cash-float-container');
+  const scrollContainer = element.closest('[class*="overflow"]') || document.body;
 
   try {
-    const canvas = await html2canvas(element, {
+    const canvas = await html2canvas(scrollContainer, {
       useCORS: true,
       allowTaint: true,
       scale: 2,
-      width: element.scrollWidth,
-      height: element.scrollHeight,
-      windowWidth: element.scrollWidth,
-      windowHeight: element.scrollHeight,
+      width: scrollContainer.scrollWidth,
+      height: scrollContainer.scrollHeight,
+      windowWidth: scrollContainer.scrollWidth,
+      windowHeight: scrollContainer.scrollHeight,
       scrollX: 0,
       scrollY: 0,
-      backgroundColor: '#ffffc1',
+      backgroundColor: '#f5e6d3',
       onclone: (clonedDoc) => {
-          const clonedContainer = clonedDoc.getElementById(
-            "cash-float-container"
-          );
-          if (clonedContainer) {
-            // Replicate the centering styles your page applies to the component
-            clonedContainer.style.maxWidth = "400px";
-            clonedContainer.style.margin = "0 auto";
-            clonedContainer.style.padding = "0 16px";
-          }
-        },
+        const clonedContainer = clonedDoc.getElementById('cash-float-container');
+        if (clonedContainer) {
+          clonedContainer.style.maxWidth = '400px';
+          clonedContainer.style.margin = '0 auto';
+          clonedContainer.style.padding = '0 16px';
+        }
+      },
     });
 
     canvas.toBlob(async (blob) => {
@@ -324,20 +322,22 @@ export function CashFloat() {
       });
 
       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      const canShareFiles = navigator.share && navigator.canShare && navigator.canShare({ files: [file] });
+      const canShareFiles =
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] });
 
       if (isMobile && canShareFiles) {
-        // Safari iOS: share sheet works with files (Save to Photos, Files, etc.)
+        // Safari iOS: native share sheet
         try {
           await navigator.share({ files: [file], title: 'Cash Float' });
         } catch (err) {
           if (err.name !== 'AbortError') {
-            // Share failed — fall back to new tab
             openImageInNewTab(blob);
           }
         }
       } else if (isMobile && !canShareFiles) {
-        // Chrome iOS: can't share files — open image in new tab so user can long-press save
+        // Chrome iOS: open in new tab, long-press to save
         openImageInNewTab(blob);
       } else {
         // Desktop: direct download
