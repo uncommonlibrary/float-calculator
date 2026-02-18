@@ -499,7 +499,7 @@ const openImageInNewTab = (blob) => {
           onClick={handleComplete}
           className="w-full h-[35px] bg-[#a4cf5a] rounded-[20px] shadow-[0px_4px_0px_0px_#82a544] text-[#643629] text-[20px] font-['Jersey_10'] leading-none hover:translate-y-0.5 hover:shadow-[0px_2px_0px_0px_#82a544] transition-all"
         >
-          Complete
+          Save as Photo
         </button>
       </div>
     </div>
